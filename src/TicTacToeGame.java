@@ -17,6 +17,18 @@ public class TicTacToeGame {
         }
     }
 
+    public ArrayList<Coordinate> getUnmarkedCoordinates() {
+        ArrayList<Coordinate> markedCoordinates = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (!coordinates[i][j].isMarked()) {
+                    markedCoordinates.add(coordinates[i][j]);
+                }
+            }
+        }
+        return markedCoordinates;
+    }
+
     public ArrayList<Coordinate> getMarkedCoordinates(char symbol) {
         ArrayList<Coordinate> markedCoordinates = new ArrayList<>();
         for (int i = 0; i < rows; i++) {

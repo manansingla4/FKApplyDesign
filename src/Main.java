@@ -7,7 +7,7 @@ public class Main {
         TicTacToeGame game = new TicTacToeGame(3, 3);
         ShowGame showGame = new ShowGame();
         Play play = new Play();
-        Player[] players = {new HumanPlayer("Manan", 'X'), new HumanPlayer("Karunam", 'O')};
+        Player[] players = {new HumanPlayer("Manan", 'X'), new ComputerPlayer("Computer", 'O')};
         play.playGame(players, game);
     }
 }
