@@ -1,13 +1,9 @@
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class HumanPlayer implements Player {
-    private String name;
-    private char symbol;
-
+public class HumanPlayer extends BasePlayer{
     public HumanPlayer(String name, char symbol) {
-        this.name = name;
-        this.symbol = symbol;
+        super(name, symbol);
     }
 
     @Override
@@ -18,15 +14,5 @@ public class HumanPlayer implements Player {
         int x = Integer.parseInt(input[0]) - 1;
         int y = Integer.parseInt(input[1]) - 1;
         return new Coordinate(x, y);
-    }
-
-    @Override
-    public char getSymbol() {
-        return symbol;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 }

@@ -1,13 +1,10 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ComputerPlayer implements Player {
-    private String name;
-    private char symbol;
+public class ComputerPlayer extends BasePlayer {
 
     public ComputerPlayer(String name, char symbol) {
-        this.name = name;
-        this.symbol = symbol;
+        super(name, symbol);
     }
 
     @Override
@@ -15,15 +12,5 @@ public class ComputerPlayer implements Player {
         ArrayList<Coordinate> unmarkedCoordinates = game.getUnmarkedCoordinates();
         Random random = new Random();
         return unmarkedCoordinates.get(random.nextInt(unmarkedCoordinates.size()));
-    }
-
-    @Override
-    public char getSymbol() {
-        return symbol;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 }
