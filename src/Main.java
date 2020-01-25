@@ -6,6 +6,8 @@ public class Main {
     public static void main(String[] args) {
         TicTacToeGame game = new TicTacToeGame(3, 3);
         ShowGame showGame = new ShowGame();
-        showGame.showGame(game);
+        Play play = new Play();
+        Player[] players = {new HumanPlayer("Manan", 'X'), new HumanPlayer("Karunam", 'O')};
+        play.playGame(players, game);
     }
 }
