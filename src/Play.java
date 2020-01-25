@@ -14,7 +14,7 @@ public class Play {
                 System.out.println("\n" + player.getName() + "'s Turn!!!");
 
                 Coordinate c = player.playTurn(game);
-                while (game.isMarked(c)) {
+                while (!game.isValid(c) || game.isMarked(c)) {
                     System.out.println("Invalid Choice, Try Again");
                     c = player.playTurn(game);
                 }

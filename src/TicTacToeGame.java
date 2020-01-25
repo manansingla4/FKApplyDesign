@@ -71,4 +71,11 @@ public class TicTacToeGame {
     public int getRows() {
         return rows;
     }
+
+    public boolean isValid(Coordinate c) {
+        int x = c.getX();
+        int y = c.getY();
+
+        return x>=0 && x<rows && y>=0 && y<columns;
+    }
 }
