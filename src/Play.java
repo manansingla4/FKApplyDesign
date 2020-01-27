@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Play {
 
     public void playGame(Player[] players, TicTacToeGame game) {
@@ -25,8 +23,11 @@ public class Play {
 
                 boolean isWinner = result.checkWinner(game, player);
 
-                if(isWinner) {
+                if (isWinner) {
                     System.out.println("\n\n" + player.getName() + " wins !!!\n Game Over");
+                    return;
+                } else if (game.getUnmarkedCoordinates().size() == 0) {
+                    System.out.println("\n\nGame Draw !!");
                     return;
                 }
             }
