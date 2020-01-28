@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        TicTacToeGame game = new TicTacToeGame(3, 3);
+        TicTacToeGame game = new TicTacToeGame(3, 2);
         Play play = new Play();
 
         System.out.println("Welcome To TicTacToe Game");

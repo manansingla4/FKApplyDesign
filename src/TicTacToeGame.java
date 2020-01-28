@@ -1,14 +1,23 @@
 import java.util.ArrayList;
 
 public class TicTacToeGame {
+    private int gridSize;
+    private int level;
     private int rows;
     private int columns;
 
-    Coordinate[][] coordinates;
+    private Coordinate[][] coordinates;
 
-    public TicTacToeGame(int rows, int columns) {
-        this.rows = rows;
-        this.columns = columns;
+    public int getGridSize() {
+        return gridSize;
+    }
+
+    public TicTacToeGame(int gridSize, int level) {
+        this.gridSize = gridSize;
+        this.level = level;
+        this.rows = (int) Math.pow(gridSize, level);
+        this.columns = rows;
+
         coordinates = new Coordinate[rows][columns];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -18,15 +27,15 @@ public class TicTacToeGame {
     }
 
     public ArrayList<Coordinate> getUnmarkedCoordinates() {
-        ArrayList<Coordinate> markedCoordinates = new ArrayList<>();
+        ArrayList<Coordinate> unmarkedCoordinates = new ArrayList<>();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 if (!coordinates[i][j].isMarked()) {
-                    markedCoordinates.add(coordinates[i][j]);
+                    unmarkedCoordinates.add(coordinates[i][j]);
                 }
             }
         }
-        return markedCoordinates;
+        return unmarkedCoordinates;
     }
 
     public ArrayList<Coordinate> getMarkedCoordinates(char symbol) {
@@ -76,6 +85,10 @@ public class TicTacToeGame {
         int x = c.getX();
         int y = c.getY();
 
-        return x>=0 && x<rows && y>=0 && y<columns;
+        return x >= 0 && x < rows && y >= 0 && y < columns;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
