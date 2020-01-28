@@ -1,9 +1,4 @@
-import javafx.util.Pair;
-
-import java.util.HashSet;
-
 public class Result {
-    HashSet<Pair<Integer, Integer>> pairHashSet;
 
     public boolean checkWinner(TicTacToeGame game, Player player) {
         int level = game.getLevel();

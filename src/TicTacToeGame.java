@@ -37,19 +37,7 @@ public class TicTacToeGame {
         }
         return unmarkedCoordinates;
     }
-
-    public ArrayList<Coordinate> getMarkedCoordinates(char symbol) {
-        ArrayList<Coordinate> markedCoordinates = new ArrayList<>();
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (coordinates[i][j].isMarked() && coordinates[i][j].getSymbol() == symbol) {
-                    markedCoordinates.add(coordinates[i][j]);
-                }
-            }
-        }
-        return markedCoordinates;
-    }
-
+    
     public void setMarked(Coordinate coordinate, char symbol) {
         setMarked(coordinate.getX(), coordinate.getY(), symbol);
     }
