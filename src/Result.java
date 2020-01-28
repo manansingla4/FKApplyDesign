@@ -1,6 +1,5 @@
 import javafx.util.Pair;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Result {
@@ -39,29 +38,63 @@ public class Result {
     private boolean checkWinnerFirstLevel(TicTacToeGame game, Player player) {
         boolean winner = false;
 
-        ArrayList<Coordinate> markedCoordinates = game.getMarkedCoordinates(player.getSymbol());
-
-        pairHashSet = new HashSet<>();
-
-        for (Coordinate coordinate : markedCoordinates) {
-            pairHashSet.add(new Pair<>(coordinate.getX(), coordinate.getY()));
-        }
-
-        for (Coordinate coordinate : markedCoordinates) {
-            int x = coordinate.getX();
-            int y = coordinate.getY();
-            
-            if (checkPairHashSet(x - 1, y) && checkPairHashSet(x + 1, y) ||
-                    checkPairHashSet(x, y - 1) && checkPairHashSet(x, y + 1) ||
-                    checkPairHashSet(x - 1, y - 1) && checkPairHashSet(x + 1, y + 1) ||
-                    checkPairHashSet(x - 1, y + 1) && checkPairHashSet(x + 1, y - 1)) {
-                winner = true;
-            }
+        if (checkRow(game, player) || checkColumn(game, player) || checkDiagonal(game, player)) {
+            winner = true;
         }
         return winner;
     }
 
-    private boolean checkPairHashSet(int x, int y) {
-        return pairHashSet.contains(new Pair<>(x, y));
+    private boolean checkRow(TicTacToeGame game, Player player) {
+        int gridSize = game.getRows();
+        char symbol = player.getSymbol();
+
+        for (int i = 0; i < gridSize; i++) {
+            boolean b = true;
+            for (int j = 0; j < gridSize; j++) {
+                if (!game.isMarked(i, j) || game.getSymbol(i, j) != symbol) {
+                    b = false;
+                }
+            }
+            if (b) return b;
+        }
+        return false;
+    }
+
+    private boolean checkColumn(TicTacToeGame game, Player player) {
+        int gridSize = game.getRows();
+        char symbol = player.getSymbol();
+
+        for (int i = 0; i < gridSize; i++) {
+            boolean b = true;
+            for (int j = 0; j < gridSize; j++) {
+                if (!game.isMarked(j, i) || game.getSymbol(j, i) != symbol) {
+                    b = false;
+                }
+            }
+            if (b) return b;
+        }
+        return false;
+    }
+
+    private boolean checkDiagonal(TicTacToeGame game, Player player) {
+        int gridSize = game.getRows();
+        char symbol = player.getSymbol();
+
+        boolean b = true;
+        for (int i = 0; i < gridSize; i++) {
+            if (!game.isMarked(i, i) || game.getSymbol(i, i) != symbol) {
+                b = false;
+            }
+        }
+        if (b) return b;
+
+        b = true;
+        for (int i = 0; i < gridSize; i++) {
+            int j = gridSize - i - 1;
+            if (!game.isMarked(i, i) || game.getSymbol(i, i) != symbol) {
+                b = false;
+            }
+        }
+        return b;
     }
 }
