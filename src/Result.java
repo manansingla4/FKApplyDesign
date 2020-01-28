@@ -50,7 +50,7 @@ public class Result {
         for (Coordinate coordinate : markedCoordinates) {
             int x = coordinate.getX();
             int y = coordinate.getY();
-
+            
             if (checkPairHashSet(x - 1, y) && checkPairHashSet(x + 1, y) ||
                     checkPairHashSet(x, y - 1) && checkPairHashSet(x, y + 1) ||
                     checkPairHashSet(x - 1, y - 1) && checkPairHashSet(x + 1, y + 1) ||
