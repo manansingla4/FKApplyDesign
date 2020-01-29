@@ -1,14 +1,4 @@
 public interface Game {
-    int getGridSize();
-
-    Game getSubGame(int x, int y);
-
-    int getLevel();
-
-    int getRows();
-
-    int getColumns();
-
     String getSymbol(Coordinate c);
 
     boolean isValid(Coordinate c);
@@ -24,4 +14,6 @@ public interface Game {
     int getPrintableRows();
 
     int getPrintableColumns();
+
+    boolean checkWinner(String symbol);
 }

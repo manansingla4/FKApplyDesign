@@ -4,16 +4,12 @@ public class HexTicTacToeGame implements Game {
     private int rows;
     private int columns;
     private String symbol;
+    private HexTicTacToeGame[][] subGames;
+
     private static String emptyString;
 
     static {
         emptyString = "";
-    }
-
-    private HexTicTacToeGame[][] subGames;
-
-    public int getGridSize() {
-        return gridSize;
     }
 
     public HexTicTacToeGame(int gridSize, int level) {
@@ -39,20 +35,8 @@ public class HexTicTacToeGame implements Game {
     }
 
 
-    public Game getSubGame(int x, int y) {
+    private HexTicTacToeGame getSubGame(int x, int y) {
         return subGames[x][y];
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
-    public int getColumns() {
-        return columns;
     }
 
     public String getSymbol(Coordinate c) {
@@ -65,7 +49,7 @@ public class HexTicTacToeGame implements Game {
         int y = c.getY();
 
         int t_level = this.level;
-        Game game1 = this;
+        HexTicTacToeGame game1 = this;
 
         while (game1 != null && t_level > 0) {
             int boardIndexX = x / (int) Math.pow(rows, t_level - 1);
@@ -76,8 +60,11 @@ public class HexTicTacToeGame implements Game {
             t_level--;
         }
 
-        assert game1 != null;
-        return game1.getSymbol(new Coordinate(x, y));
+
+        if (game1 != null) {
+            return game1.getSymbol(c);
+        }
+        return null;
     }
 
     @Override
@@ -85,12 +72,12 @@ public class HexTicTacToeGame implements Game {
         int x = c.getX();
         int y = c.getY();
 
-        if (x < 0 || x >= (int) Math.pow(rows, level) || y < 0 || y >= (int) Math.pow(columns, level)) {
+        if (x < 0 || x >= getPrintableRows() || y < 0 || y >= getPrintableColumns()) {
             return false;
         }
 
         int t_level = this.level;
-        Game game1 = this;
+        HexTicTacToeGame game1 = this;
 
         while (game1 != null && t_level > 0) {
             int boardIndexX = x / (int) Math.pow(rows, t_level - 1);
@@ -112,6 +99,29 @@ public class HexTicTacToeGame implements Game {
     @Override
     public void setMarked(Coordinate c, String symbol) {
 
+        if (level == 0) {
+            this.symbol = symbol;
+            return;
+        }
+
+        int x = c.getX();
+        int y = c.getY();
+
+        int t_level = this.level;
+        HexTicTacToeGame game1 = this;
+
+        while (game1 != null && t_level > 0) {
+            int boardIndexX = x / (int) Math.pow(rows, t_level - 1);
+            int boardIndexY = y / (int) Math.pow(columns, t_level - 1);
+            x = x % (int) Math.pow(rows, t_level - 1);
+            y = y % (int) Math.pow(columns, t_level - 1);
+            game1 = game1.getSubGame(boardIndexX, boardIndexY);
+            t_level--;
+        }
+
+        if (game1 != null) {
+            game1.setMarked(new Coordinate(x, y), symbol);
+        }
     }
 
     @Override
@@ -132,5 +142,95 @@ public class HexTicTacToeGame implements Game {
     @Override
     public int getPrintableColumns() {
         return (int) Math.pow(columns, level);
+    }
+
+    @Override
+    public boolean checkWinner(String symbol) {
+        return isGameSymbol(symbol);
+    }
+
+    private boolean checkDiagonals(String symbol) {
+
+        Game tempGame = new HexTicTacToeGame(gridSize, 1);
+
+        // checking right diagonals
+        for (int j = rows / 2; j < columns - rows / 2; j += 2) {
+            boolean check = true;
+
+            for (int i = 0, k = j; tempGame.isValid(new Coordinate(i, k)); i++, k++) {
+                if (!getSubGame(i, k).isGameSymbol(symbol)) {
+                    check = false;
+                    break;
+                }
+            }
+
+            if (check) return true;
+        }
+
+        for (int i = 1; i <= rows / 2; i++) {
+            int j = Math.abs(i - rows / 2);
+            boolean check = true;
+            for (int k = i; tempGame.isValid(new Coordinate(k, j)); k++, j++) {
+                if (!getSubGame(k, j).isGameSymbol(symbol)) {
+                    check = false;
+                    break;
+                }
+            }
+            if (check) return true;
+        }
+
+
+        // checking left diagonals
+        for (int j = rows / 2; j < columns - rows / 2; j += 2) {
+            boolean check = true;
+
+            for (int i = 0, k = j; tempGame.isValid(new Coordinate(i, k)); i++, k--) {
+                if (!getSubGame(i, k).isGameSymbol(symbol)) {
+                    check = false;
+                    break;
+                }
+            }
+
+            if (check) return true;
+        }
+
+        for (int i = 1; i <= rows / 2; i++) {
+            int j = columns - Math.abs(i - (rows / 2)) - 1;
+            boolean check = true;
+            for (int k = i; tempGame.isValid(new Coordinate(k, j)); k++, j--) {
+                if (!getSubGame(k, j).isGameSymbol(symbol)) {
+                    check = false;
+                    break;
+                }
+            }
+            if (check) return true;
+        }
+
+        return false;
+    }
+
+    private boolean checkRows(String symbol) {
+        for (int i = 0; i < rows; i++) {
+            boolean check = true;
+
+            for (int j = Math.abs(i - rows / 2); j < columns - Math.abs(i - (rows / 2)); j += 2) {
+                if (!getSubGame(i, j).isGameSymbol(symbol)) {
+                    check = false;
+                    break;
+                }
+            }
+
+            if (check) return true;
+        }
+
+        return false;
+    }
+
+    private boolean isGameSymbol(String symbol) {
+        if (level == 0) {
+            return this.symbol.equals(symbol);
+        }
+
+        return checkRows(symbol) || checkDiagonals(symbol);
     }
 }

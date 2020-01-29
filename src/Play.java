@@ -36,7 +36,6 @@ public class Play {
 
     public void playGame(Player[] players, Game game) {
         ShowGame showGame = new ShowGame();
-        Result result = new Result();
 
         showGame.showGame(game);
 
@@ -54,13 +53,8 @@ public class Play {
                 game.setMarked(c, player.getSymbol());
 
                 showGame.showGame(game);
-                boolean isWinner = false;
 
-                if (game instanceof HexTicTacToeGame) {
-                    isWinner = result.checkWinner((HexTicTacToeGame) game, player);
-                } else if (game instanceof TicTacToeGame) {
-                    isWinner = result.checkWinner((TicTacToeGame) game, player);
-                }
+                boolean isWinner = game.checkWinner(player.getSymbol());
 
                 if (isWinner) {
                     System.out.println("\n\n" + player.getName() + " wins !!!\n Game Over");

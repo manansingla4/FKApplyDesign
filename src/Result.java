@@ -1,9 +1,4 @@
 public class Result {
-
-    public boolean checkWinner(HexTicTacToeGame game, Player player) {
-        return false;
-    }
-
     public boolean checkWinner(TicTacToeGame game, Player player) {
         int level = game.getLevel();
         int gridSize = game.getGridSize();
