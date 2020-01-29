@@ -1,15 +1,15 @@
 public abstract class BasePlayer implements Player {
 
     private String name;
-    private char symbol;
+    private String symbol;
 
-    public BasePlayer(String name, char symbol) {
+    public BasePlayer(String name, String symbol) {
         this.name = name;
         this.symbol = symbol;
     }
 
     @Override
-    public char getSymbol() {
+    public String getSymbol() {
         return symbol;
     }
 

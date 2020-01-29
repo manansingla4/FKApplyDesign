@@ -1,5 +1,9 @@
 public class Result {
 
+    public boolean checkWinner(HexTicTacToeGame game, Player player) {
+        return false;
+    }
+
     public boolean checkWinner(TicTacToeGame game, Player player) {
         int level = game.getLevel();
         int gridSize = game.getGridSize();
@@ -40,12 +44,12 @@ public class Result {
 
     private boolean checkRow(TicTacToeGame game, Player player) {
         int gridSize = game.getRows();
-        char symbol = player.getSymbol();
+        String symbol = player.getSymbol();
 
         for (int i = 0; i < gridSize; i++) {
             boolean b = true;
             for (int j = 0; j < gridSize; j++) {
-                if (!game.isMarked(i, j) || game.getSymbol(i, j) != symbol) {
+                if (!game.isMarked(i, j) || !game.getSymbol(i, j).equals(symbol)) {
                     b = false;
                 }
             }
@@ -56,12 +60,12 @@ public class Result {
 
     private boolean checkColumn(TicTacToeGame game, Player player) {
         int gridSize = game.getRows();
-        char symbol = player.getSymbol();
+        String symbol = player.getSymbol();
 
         for (int i = 0; i < gridSize; i++) {
             boolean b = true;
             for (int j = 0; j < gridSize; j++) {
-                if (!game.isMarked(j, i) || game.getSymbol(j, i) != symbol) {
+                if (!game.isMarked(j, i) || !game.getSymbol(j, i).equals(symbol)) {
                     b = false;
                 }
             }
@@ -72,11 +76,11 @@ public class Result {
 
     private boolean checkDiagonal(TicTacToeGame game, Player player) {
         int gridSize = game.getRows();
-        char symbol = player.getSymbol();
+        String symbol = player.getSymbol();
 
         boolean b = true;
         for (int i = 0; i < gridSize; i++) {
-            if (!game.isMarked(i, i) || game.getSymbol(i, i) != symbol) {
+            if (!game.isMarked(i, i) || !game.getSymbol(i, i).equals(symbol)) {
                 b = false;
             }
         }
@@ -85,7 +89,7 @@ public class Result {
         b = true;
         for (int i = 0; i < gridSize; i++) {
             int j = gridSize - i - 1;
-            if (!game.isMarked(i, i) || game.getSymbol(i, i) != symbol) {
+            if (!game.isMarked(i, i) || !game.getSymbol(i, i).equals(symbol)) {
                 b = false;
             }
         }

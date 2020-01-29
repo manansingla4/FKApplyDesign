@@ -16,7 +16,7 @@ public class ShowGame {
     }
 
 
-    public void showGame(HexTicTacToeGame game) {
+    public void showGame(Game game) {
         int gridSize = game.getGridSize();
         int level = game.getLevel();
         int rows = game.getRows();
@@ -30,7 +30,7 @@ public class ShowGame {
                 int x = i;
                 int y = j;
                 int t_level = level;
-                HexTicTacToeGame game1 = game;
+                Game game1 = game;
 
                 while (game1 != null && t_level > 1) {
                     int boardIndexX = x / (int) Math.pow(rows, t_level - 1);

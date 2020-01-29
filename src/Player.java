@@ -1,5 +1,9 @@
 public interface Player{
-    char getSymbol();
+    String getSymbol();
+
     String getName();
+
     Coordinate playTurn(TicTacToeGame game);
+
+    Coordinate playTurn(Game game);
 }

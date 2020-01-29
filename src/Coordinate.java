@@ -2,7 +2,7 @@ public class Coordinate {
     private int x;
     private int y;
     private boolean marked;
-    private char symbol;
+    private String symbol;
 
     public Coordinate(int x, int y) {
         this.x = x;
@@ -22,11 +22,11 @@ public class Coordinate {
         return marked;
     }
 
-    public char getSymbol() {
+    public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(char symbol) {
+    public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
 

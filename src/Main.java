@@ -28,19 +28,19 @@ public class Main {
             TicTacToeGame game = new TicTacToeGame(gridSize, level);
 
             if (noOfPlayers == 1) {
-                Player[] players = {new HumanPlayer("Human", 'X'), new ComputerPlayer("Computer", 'O')};
+                Player[] players = {new HumanPlayer("Human", "X"), new ComputerPlayer("Computer", "O")};
                 play.playGame(players, game);
             } else if (noOfPlayers == 2) {
-                Player[] players = {new HumanPlayer("Person 1", 'X'), new HumanPlayer("Person 2", 'O')};
+                Player[] players = {new HumanPlayer("Person 1", "X"), new HumanPlayer("Person 2", "O")};
                 play.playGame(players, game);
             }
         } else {
             HexTicTacToeGame game = new HexTicTacToeGame(gridSize, level);
             if (noOfPlayers == 1) {
-                Player[] players = {new HumanPlayer("Human", 'X'), new ComputerPlayer("Computer", 'O')};
+                Player[] players = {new HumanPlayer("Human", "X"), new ComputerPlayer("Computer", "O")};
                 play.playGame(players, game);
             } else {
-                Player[] players = {new HumanPlayer("Person 1", 'X'), new HumanPlayer("Person 2", 'O')};
+                Player[] players = {new HumanPlayer("Person 1", "X"), new HumanPlayer("Person 2", "O")};
                 play.playGame(players, game);
             }
         }

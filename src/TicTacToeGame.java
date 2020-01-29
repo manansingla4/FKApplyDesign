@@ -38,11 +38,11 @@ public class TicTacToeGame {
         return unmarkedCoordinates;
     }
     
-    public void setMarked(Coordinate coordinate, char symbol) {
+    public void setMarked(Coordinate coordinate, String symbol) {
         setMarked(coordinate.getX(), coordinate.getY(), symbol);
     }
 
-    public void setMarked(int x, int y, char symbol) {
+    public void setMarked(int x, int y, String symbol) {
         if (!isMarked(x, y)) {
             coordinates[x][y].setMarked();
             coordinates[x][y].setSymbol(symbol);
@@ -57,7 +57,7 @@ public class TicTacToeGame {
         return coordinates[x][y].isMarked();
     }
 
-    public char getSymbol(int x, int y) {
+    public String getSymbol(int x, int y) {
         return coordinates[x][y].getSymbol();
     }
 
