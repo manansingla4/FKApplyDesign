@@ -25,7 +25,7 @@ public class Play {
 
                 if (isWinner) {
                     System.out.println("\n\n" + player.getName() + " wins !!!\n Game Over");
-                    return;
+
                 } else if (game.getUnmarkedCoordinates().size() == 0) {
                     System.out.println("\n\nGame Draw !!");
                     return;

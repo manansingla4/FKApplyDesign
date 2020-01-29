@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class TicTacToeGame {
+public class HexTicTacToeGame {
     private int gridSize;
     private int level;
     private int rows;
@@ -12,15 +12,16 @@ public class TicTacToeGame {
         return gridSize;
     }
 
-    public TicTacToeGame(int gridSize, int level) {
+    public HexTicTacToeGame(int gridSize, int level) {
         this.gridSize = gridSize;
         this.level = level;
-        this.rows = (int) Math.pow(gridSize, level);
-        this.columns = rows;
+        this.rows = (int) Math.pow(gridSize * 2 - 1, level);
+        this.columns = (int) Math.pow(4 * gridSize - 3, level);
 
         coordinates = new Coordinate[rows][columns];
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
+
+        for (int i = 0; i < (gridSize * 2 - 1); i++) {
+            for (int j = Math.abs(i - (gridSize * 2 - 1) / 2); j < (4 * gridSize - 3) - Math.abs(i - ((gridSize * 2 - 1) / 2)); j += 2) {
                 coordinates[i][j] = new Coordinate(i, j);
             }
         }
@@ -54,7 +55,7 @@ public class TicTacToeGame {
     }
 
     public boolean isMarked(int x, int y) {
-        return coordinates[x][y].isMarked();
+        return coordinates[x][y] != null && coordinates[x][y].isMarked();
     }
 
     public char getSymbol(int x, int y) {
@@ -70,10 +71,11 @@ public class TicTacToeGame {
     }
 
     public boolean isValid(Coordinate c) {
-        int x = c.getX();
-        int y = c.getY();
+        return isValid(c.getX(), c.getY());
+    }
 
-        return x >= 0 && x < rows && y >= 0 && y < columns;
+    public boolean isValid(int x, int y) {
+        return x >= 0 && x < rows && y >= 0 && y < columns && coordinates[x][y] != null;
     }
 
     public int getLevel() {
