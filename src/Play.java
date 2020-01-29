@@ -1,5 +1,4 @@
 public class Play {
-
     public void playGame(Player[] players, TicTacToeGame game) {
         ShowGame showGame = new ShowGame();
         Result result = new Result();
@@ -32,5 +31,11 @@ public class Play {
                 }
             }
         }
+    }
+
+
+    public void playGame(Player[] players, HexTicTacToeGame game) {
+        ShowGame showGame = new ShowGame();
+        showGame.showGame(game);
     }
 }

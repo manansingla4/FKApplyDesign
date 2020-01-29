@@ -23,7 +23,6 @@ public class Result {
                     }
                 }
             }
-            new ShowGame().showGame(game1);
             game = game1;
         }
         winner = checkWinnerFirstLevel(game, player);
