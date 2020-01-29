@@ -9,7 +9,7 @@ public interface Game {
 
     int getColumns();
 
-    String getSymbol();
+    String getSymbol(Coordinate c);
 
     boolean isValid(Coordinate c);
 
@@ -20,4 +20,8 @@ public interface Game {
     void unMark(Coordinate c);
 
     boolean isFull();
+
+    int getPrintableRows();
+
+    int getPrintableColumns();
 }
