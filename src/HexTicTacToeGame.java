@@ -131,7 +131,15 @@ public class HexTicTacToeGame implements Game {
 
     @Override
     public boolean isFull() {
-        return false;
+        for (int i = 0; i < getPrintableRows(); i++) {
+            for (int j = 0; j < getPrintableColumns(); j++) {
+                Coordinate c = new Coordinate(i, j);
+                if (isValid(c) && !isMarked(c)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
