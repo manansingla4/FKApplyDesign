@@ -6,7 +6,7 @@ public class HexTicTacToeGame implements Game {
     private String symbol;
     private HexTicTacToeGame[][] subGames;
 
-    private static String emptyString;
+    private final static String emptyString;
 
     static {
         emptyString = "";
@@ -23,7 +23,7 @@ public class HexTicTacToeGame implements Game {
         this.level = level;
         this.rows = gridSize * 2 - 1;
         this.columns = 4 * gridSize - 3;
-        this.symbol = "";
+        this.symbol = emptyString;
 
         subGames = new HexTicTacToeGame[rows][columns];
 
@@ -122,11 +122,6 @@ public class HexTicTacToeGame implements Game {
         if (game1 != null) {
             game1.setMarked(new Coordinate(x, y), symbol);
         }
-    }
-
-    @Override
-    public void unMark(Coordinate c) {
-
     }
 
     @Override

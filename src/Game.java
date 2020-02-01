@@ -7,8 +7,6 @@ public interface Game {
 
     void setMarked(Coordinate c, String symbol);
 
-    void unMark(Coordinate c);
-
     boolean isFull();
 
     int getPrintableRows();

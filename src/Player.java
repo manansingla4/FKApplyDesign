@@ -3,7 +3,5 @@ public interface Player{
 
     String getName();
 
-    Coordinate playTurn(TicTacToeGame game);
-
     Coordinate playTurn(Game game);
 }
