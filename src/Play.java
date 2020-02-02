@@ -1,7 +1,6 @@
 public class Play {
-    public void playGame(Player[] players, Game game) {
+    public Player playGame(Player[] players, Game game) {
         ShowGame showGame = new ShowGame();
-
         showGame.showGame(game);
 
         while (true) {
@@ -22,11 +21,11 @@ public class Play {
                 boolean isWinner = game.checkWinner(player.getSymbol());
 
                 if (isWinner) {
-                    System.out.println("\n\n" + player.getName() + " wins !!!\n Game Over");
-                    return;
+                    System.out.println("\n\n" + player.getName() + " wins !!!\n Game Over\n\n");
+                    return player;
                 } else if (game.isFull()) {
                     System.out.println("\n\nGame Draw !!");
-                    return;
+                    return null;
                 }
             }
         }
