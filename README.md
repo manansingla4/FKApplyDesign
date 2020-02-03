@@ -12,4 +12,11 @@ In your terminal <br>
 Enter Coordinates of the box and top left corner being 1 1 (Basic Coordinate Convention for Matrix)
  <br> <br>
  
- 
+Class Diagram
+-------------
+![Class Diagram](ClassDiagram.jpg)
+
+
+Sequence Diagram
+----------------
+![Sequence Diagram](SequenceDiagram.jpg)
